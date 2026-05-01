@@ -3,17 +3,17 @@ Goldhat had an epic list of commands for maintenance and operations. Until we fo
 #######################
 ## DATABASE
 # update driver
-sudo dnf install php-mysqlnd
+sudo apt install php-mysqlnd
 # use interactive DB shell
 mysql -u root -p # or just mysql
 
 ######################
 ## SERVER OPS
 # php-fpm debugging
-sudo dnf install php-fpm
+sudo apt install php-fpm
 sudo systemctl restart php-fpm
 # pdo
-sudo dnf install php-mysqlnd
+sudo apt install php-mysqlnd
 php -m | grep pdo_mysql
 # save yourself hours over time by
 # putting this into your .bashrc or .zshrc, etc.
