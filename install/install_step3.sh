@@ -1,6 +1,6 @@
 echo "Let's continue. First, a bit more firewall setup..."
 echo "If you don't use firewalld or don't want to, you can substitute iptables, ufw, etc."
-sudo dnf install firewalld
+sudo apt install firewalld
 sudo systemctl start firewalld
 sudo systemctl enable firewalld
 #sudo firewall-cmd --add-port=9200/tcp --permanent
@@ -11,11 +11,11 @@ sudo firewall-cmd --permanent --add-service=https
 sudo firewall-cmd --reload
 
 echo "Double-check that the required modules are installed and available..."
-sudo dnf install php-mbstring php-xml php-gmp php-curl php-gd composer unzip -y
+sudo apt install php-mbstring php-xml php-gmp php-curl php-gd composer unzip -y
 
 
 echo "Ensure we have nodejs/npm..."
-sudo dnf install nodejs npm -y
+sudo apt install nodejs npm -y
 echo "Download elasticsearch vector DB...more versions available on elastic.co..."
 echo "If anything goes wrong, use a package manager installation or the docker container. Both are available on their website."
 rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
@@ -26,7 +26,7 @@ ES_SHA512_URL="https://artifacts.elastic.co/downloads/elasticsearch/${ES_TAR}.sh
 ES_ASC_URL="https://artifacts.elastic.co/downloads/elasticsearch/${ES_TAR}.asc"
 INSTALL_DIR="/usr/local/elasticsearch"
 
-sudo dnf install -y wget gpg
+sudo apt install -y wget gpg
 sudo mkdir -p ${INSTALL_DIR}
 cd ${INSTALL_DIR}
 
