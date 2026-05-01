@@ -1,20 +1,20 @@
 UPGRADE="No"
 
-echo "Let's get started with a dnf upgrade"
+echo "Let's get started with a apt upgrade"
 if [ "$UPGRADE" == "Yes" ]; then
-    sudo dnf upgrade --refresh -y
+    sudo apt upgrade --refresh -y
 fi
 
 echo "Installing PHP and PHP modules..."
-sudo dnf install -y php php-cli php-common php-fpm php-json php-pdo php-mbstring php-xml php-opcache php-curl php-zip php-intl php-gd php-bcmath php-xmlrpc
-sudo dnf install php8.2-mysql
-if ! sudo dnf install -y php; then
+sudo apt install -y php php-cli php-common php-fpm php-json php-pdo php-mbstring php-xml php-opcache php-curl php-zip php-intl php-gd php-bcmath php-xmlrpc
+sudo apt install php8.2-mysql
+if ! sudo apt install -y php; then
     echo "Failed to install PHP. Exiting."
     exit 1
 fi
 
 echo "Installing Nginx..."
-sudo dnf install -y nginx
+sudo apt install -y nginx
 sudo ufw allow 'Nginx HTTP'
 # If missing:
 #	sudo nano /etc/ufw/applications.d/nginx
@@ -26,7 +26,7 @@ sudo ufw allow 'Nginx HTTP'
 
 echo "Installing Laravel Composer..."
 if ! command -v composer >/dev/null 2>&1; then
-	sudo dnf install -y composer
+	sudo apt install -y composer
 fi
 
 echo "Setup Laravel Scout"
@@ -34,7 +34,7 @@ sudo composer require laravel/scout
 sudo php artisan vendor:publish --provider="Laravel\Scout\ScoutServiceProvider"
 
 echo "Installing NGINX..."
-sudo dnf install nginx -y
+sudo apt install nginx -y
 
 echo "Enabling and starting NGINX..."
 sudo systemctl start nginx
@@ -45,11 +45,11 @@ sudo firewall-cmd --permanent --add-service=http
 sudo firewall-cmd --reload
 
 echo "MariaDB setup..."
-sudo dnf install mariadb-server -y
+sudo apt install mariadb-server -y
 sudo systemctl start mariadb
 sudo systemctl enable mariadb
 sudo mysql_secure_installation
-sudo dnf install php-mysqlnd
+sudo apt install php-mysqlnd
 
 echo "Setup marketpalce DB in Maria/MySQL..."
 echo ""
