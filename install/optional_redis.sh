@@ -1,5 +1,5 @@
 echo "Redis is optional, but improves performance..."
-sudo dnf install redis -y
+sudo apt install redis -y
 
 echo "************IMPORTANT*********************"
 echo "You must now manually edit /etc/redis/redis.conf to have the value 'supervised no' to 'supervised systemd'."
